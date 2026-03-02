@@ -628,3 +628,70 @@ margin-top: 40px;
         width: 100%;
     }
 }
+
+@media (max-width: 768px) {
+
+    /* Page Title */
+    .page-title {
+        font-size: 28px;
+        margin: 40px 0 20px;
+        text-align: center;
+    }
+
+    /* Section Headings */
+    .container1 h1,
+    .container2 h1,
+    .container3 h1 {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 18px;
+        height: auto;
+        padding: 12px;
+        text-align: center;
+    }
+
+    /* Sliders */
+    .slider,
+    .slider2,
+    .slider3 {
+        margin-left: 15px;
+        margin-right: 15px;
+        gap: 20px;
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    /* Skill Cards */
+    .slide {
+        min-width: 130px;
+        max-width: 160px;
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .slide:hover {
+        transform: scale(1.05);
+    }
+
+}
+/* ================= EXPERIENCE MOBILE FIX ================= */
+
+@media (max-width: 768px) {
+
+    .achievement-card {
+        flex-direction: column;      /* stack vertically */
+        align-items: flex-start;     /* align left */
+        gap: 15px;
+    }
+
+    .achievement-left {
+        width: 100%;
+    }
+
+    .achievement-tag {
+        align-self: flex-start;      /* move below */
+        margin-top: 10px;
+    }
+
+}
