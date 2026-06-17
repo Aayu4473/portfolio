@@ -3,435 +3,407 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aayushi Tiwari | Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Aayushi Tiwari | AI & Engineering Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CSS RESET & VARIABLES */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
 
-        :root {
-            --bg-color: #0b1120;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding-top: 100px; /* Space for navbar */
-        }
-
-        /* NAVBAR (Keeping it consistent) */
-        
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #06b6d4;
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(139, 92, 246, 0.5);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9998;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-
-        /* Hover state for links */
-       
-
-
-        .navbar{
+       /* NEURAL NETWORK CANVAS */
+#neural-canvas {
     position: fixed;
-    top:0;
-    left:0;
-    width: 100%;
-    padding: 20px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background:rgba(11,17,32,0.85);
-    backdrop-filter:blur (14px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    z-index: 1000;
-}
-
-         .logo{
-    font-size:2rem;
-    font-weight:700;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-
-        /* NAVBAR */
-        nav a {
-
-    color: #ffffff;
-
-    text-decoration: none;
-
-    margin-left: 35px;
-
-    font-size: 1rem;
-
-    font-weight: 500;
-
-    position: relative;
-
-    transition: all 0.3s ease;
-}
-
-nav a:hover {
-
-    color: #06b6d4;
-}
-
-/* Underline */
-
-nav a::after {
-
-    content: '';
-
-    position: absolute;
-
+    top: 0;
     left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* Keeps it behind your text and glass cards */
+    pointer-events: none; /* Lets you click through it */
+} 
+/* GLOBAL CSS */
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
 
-    bottom: -6px;
-
-    width: 0;
-
-    height: 2px;
-
-    background: linear-gradient(
-        90deg,
-        #06b6d4,
-        #8b5cf6
-    );
-
-    transition: width 0.3s ease;
+:root{
+    --bg-color:#050816;
+    --text-main:#f8fafc;
+    --text-muted:#94a3b8;
+    --accent-gradient: linear-gradient(90deg, #06b6d4, #8b5cf6);
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
-
-nav a:hover::after {
-
-    width: 100%;
+body{
+    background-color: var(--bg-color);
+    color:white;
+    overflow-x:hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
+/* AMBIENT BACKGROUND ORBS */
+.ambient-orb {
+    position: absolute; border-radius: 50%; filter: blur(90px);
+    z-index: -1; animation: drift 12s infinite alternate ease-in-out;
+}
+.orb-1 { width: 500px; height: 500px; background: rgba(6, 182, 212, 0.12); top: 10%; left: -10%; }
+.orb-2 { width: 600px; height: 600px; background: rgba(139, 92, 246, 0.12); bottom: -10%; right: -10%; animation-delay: -5s; }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gradient);
-            bottom: -5px;
-            left: 0;
-            transition: 0.3s ease;
-        }
+@keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, -40px); }
+}
 
-        nav a:hover::after {
-            width: 100%;
-        }
+/* NAVBAR */
+.navbar{
+    position:fixed; top:0; left:0; width:100%; padding:22px 8%;
+    display:flex; justify-content:space-between; align-items:center;
+    background:rgba(11,17,32,0.85); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--glass-border); z-index:1000;
+}
+.logo{
+    font-size:2rem; font-weight:700;
+    background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+nav a{ color:white; text-decoration:none; margin-left:35px; font-size:1rem; position:relative; transition:0.3s ease; font-weight: 500;}
+nav a:hover{ color:#06b6d4; }
+nav a::after{
+    content:''; position:absolute; left:0; bottom:-6px; width:0; height:2px;
+    background:var(--accent-gradient); transition:0.3s ease;
+}
+nav a:hover::after{ width:100%; }
 
-        .stat-badge {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 15px 25px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
+/* PAGE HEADER */
+.page-header {
+    padding: 160px 8% 60px;
+    text-align: center;
+}
+.main-title {
+    font-size: 3.5rem; font-weight: 700; margin-bottom: 20px;
+    background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.6; }
 
-        .stat-badge:hover {
-            transform: translateY(-5px);
-            border-color: rgba(6, 182, 212, 0.5);
-        }
+/* PROJECTS GRID */
+.projects-container {
+    padding: 0 8% 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 35px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-        /* PROJECTS SECTION */
-        .projects-section {
-            padding: 50px 8%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+/* PROJECT CARD */
+.project-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: var(--accent-gradient); opacity: 0.7; transition: 0.3s ease;
+}
 
-        /* GRID LAYOUT */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(6, 182, 212, 0.1);
+}
 
-        /* CARD UI (Based on your reference images) */
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 25px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+.project-card:hover::before { opacity: 1; height: 6px; }
 
-        /* Colorful top border for cards */
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: var(--accent-gradient);
-        }
+/* CARD HEADER (Icons & Links) */
+.card-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
+}
+.card-icon { font-size: 2.2rem; color: #06b6d4; }
+.card-links a { color: var(--text-muted); font-size: 1.4rem; transition: 0.3s; margin-left: 15px; }
+.card-links a:hover { color: #8b5cf6; transform: scale(1.1); display: inline-block; }
 
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(139, 92, 246, 0.5);
-        }
+/* CARD CONTENT */
+.project-card h3 { font-size: 1.5rem; color: #f8fafc; margin-bottom: 15px; font-weight: 600;}
+.project-card p {
+    color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px; flex-grow: 1;
+}
 
-        /* Card Header (Icons) */
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+/* TECH TAGS */
+.tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tech-tags span {
+    background: rgba(255, 255, 255, 0.04); color: #e2e8f0; padding: 6px 14px;
+    border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1px solid rgba(255,255,255,0.05);
+}
 
-        .card-icon {
-            font-size: 2rem;
-            color: #8b5cf6;
-        }
+/* GITHUB BUTTON CONTAINER */
+.btn-container { text-align: center; padding-bottom: 100px; margin-top: 20px; }
+.github-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent-gradient); color: #fff; padding: 14px 35px;
+    border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem;
+    transition: 0.3s ease; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+}
+.github-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(6, 182, 212, 0.4); }
 
-        .card-links a {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-left: 15px;
-            transition: 0.3s;
-        }
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(30px); animation: slideUp 0.8s ease forwards; }
+.delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; } .delay-6 { animation-delay: 0.6s; }
 
-        .card-links a:hover { color: #fff; }
+@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* Card Content */
-        .project-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1; /* Pushes tags to the bottom */
-        }
-
-        /* Tech Tags */
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech-tags span {
-            background: rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* GITHUB BUTTON */
-        .btn-container {
-            text-align: center;
-        }
-
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--accent-gradient);
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        .github-btn:hover {
-            opacity: 0.9;
-            transform: scale(1.05);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
-            nav a { margin: 0 10px; }
-            .projects-section { padding-top: 100px; }
-        }
+/* RESPONSIVE */
+@media(max-width:991px){
+    .navbar{ flex-direction:column; gap:15px; padding:18px 5%; }
+    nav a{ margin:0 10px; }
+    .page-header { padding-top: 180px; }
+    .projects-container { grid-template-columns: 1fr; padding: 0 5% 60px; }
+}
     </style>
 </head>
 <body>
+    <canvas id="neural-canvas"></canvas>
 
-    <header class="navbar">
-        <h2 class="logo">Aayushi.</h2>
-        <nav>
-            <a href="index.html" class="hover-target">Home</a>
-            <a href="skills.html" class="hover-target">Skills</a>
-            <a href="projects.html" class="hover-target">Projects</a>
-            <a href="experience.html" class="hover-target">Experience</a>
-            <a href="contact.html" class="hover-target">Contact</a>
-        </nav>
-    </header>
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
 
-    <section class="projects-section">
-        <h2 class="section-title">My Work</h2>
-        
-        <div class="projects-grid">
-            
-            <div class="project-card">
-                <div class="card-header">
-                    <i class="fa-solid fa-lock card-icon"></i>
-                    <div class="card-links">
-                        <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-                <h3>Secure Chat Application</h3>
-                <p>Developed a real-time encrypted messaging system implementing hybrid encryption (RSA + AES) for secure key exchange and message transmission.</p>
-                <div class="tech-tags">
-                    <span>Python</span>
-                    <span>Sockets</span>
-                    <span>RSA</span>
-                    <span>AES</span>
-                </div>
+<header class="navbar fade-up">
+    <h2 class="logo">Aayushi.</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="page-header fade-up delay-1">
+    <h1 class="main-title">Engineering Lab</h1>
+    <p class="subtitle">Showcasing my transition from full-stack foundations to architecting autonomous AI agents, multi-modal LLM dashboards, and secure backend systems.</p>
+</section>
+
+<section class="projects-container">
+
+    <div class="project-card fade-up delay-2">
+        <div class="card-header">
+            <i class="fa-solid fa-network-wired card-icon"></i>
+            <div class="card-links">
+                <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
             </div>
-
-            <div class="project-card">
-                <div class="card-header">
-                    <i class="fa-solid fa-film card-icon"></i>
-                    <div class="card-links">
-                        <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-                <h3>Movie Ticket Booking</h3>
-                <p>Implemented a full-stack database-driven ticket booking system with seat management. Designed relational MySQL database schemas for storing user bookings and movie data.</p>
-                <div class="tech-tags">
-                    <span>MySQL</span>
-                    <span>HTML/CSS</span>
-                    <span>JavaScript</span>
-                    <span>PHP</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="card-header">
-                    <i class="fa-solid fa-file-contract card-icon"></i>
-                    <div class="card-links">
-                        <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-                <h3>AI Resume Analyzer</h3>
-                <p>Built an AI-powered web tool that extracts resume content from PDFs and evaluates it using OpenRouter API to generate intelligent suggestions in real-time.</p>
-                <div class="tech-tags">
-                    <span>JavaScript</span>
-                    <span>PDF.js</span>
-                    <span>OpenRouter API</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="card-header">
-                    <i class="fa-solid fa-robot card-icon"></i>
-                    <div class="card-links">
-                        <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-                <h3>PDF Chatbot</h3>
-                <p>Developed an AI-powered chatbot capable of answering questions from uploaded PDF documents. Implemented document processing using PyPDF2 and semantic search using vector embeddings.</p>
-                <div class="tech-tags">
-                    <span>Python</span>
-                    <span>LangChain</span>
-                    <span>Streamlit</span>
-                    <span>HuggingFace</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-    <div class="card-header">
-        <i class="fa-solid fa-mobile-screen-button card-icon"></i>
-        <div class="card-links">
-            <a href="https://github.com/Aayu4473" target="_blank">
-                <i class="fa-brands fa-github"></i>
-            </a>
+        </div>
+        <h3>MarketSpy AI Framework<h4> *In Progress</h4></h3>
+        <p>An autonomous market intelligence agent. Engineered a 4-layer asynchronous backend applying OOP principles. Currently integrating LangChain and LLM APIs to create an autonomous data-fetching and analysis pipeline.</p>
+        <div class="tech-tags">
+            <span>FastAPI</span>
+            <span>Python</span>
+            <span>SQLAlchemy</span>
+            <span>LangChain</span>
         </div>
     </div>
 
-    <h3>PhonePe UI Clone App</h3>
-
-    <p>
-        Designed and developed a modern PhonePe-inspired Android application
-        in Android Studio featuring a secure password screen, custom homepage UI,
-        QR scanner button, transaction history page, balance section, and smooth
-        navigation with loading animations.
-    </p>
-
-    <div class="tech-tags">
-        <span>Android Studio</span>
-        <span>Java</span>
-        <span>XML</span>
-        <span>Firebase</span>
+    <div class="project-card fade-up delay-3">
+        <div class="card-header">
+            <i class="fa-solid fa-brain card-icon"></i>
+            <div class="card-links">
+                <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <h3>Document RAG Agent</h3>
+        <p>Developed a Retrieval-Augmented Generation (RAG) AI agent. Utilized PyPDF2 for document processing and HuggingFace vector embeddings to allow users to semantically query complex document pipelines.</p>
+        <div class="tech-tags">
+            <span>LangChain</span>
+            <span>HuggingFace</span>
+            <span>Python</span>
+            <span>Streamlit</span>
+        </div>
     </div>
+
+    <div class="project-card fade-up delay-4">
+        <div class="card-header">
+            <i class="fa-solid fa-microchip card-icon"></i>
+            <div class="card-links">
+                <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <h3>AI Evaluation Dashboard</h3>
+        <p>Built an asynchronous web dashboard that extracts text from resumes locally and routes the payload to the OpenRouter API, generating real-time, agentic feedback for ATS optimization.</p>
+        <div class="tech-tags">
+            <span>JavaScript</span>
+            <span>OpenRouter API</span>
+            <span>PDF.js</span>
+            <span>HTML/CSS</span>
+        </div>
+    </div>
+
+    <div class="project-card fade-up delay-5">
+        <div class="card-header">
+            <i class="fa-solid fa-shield-halved card-icon"></i>
+            <div class="card-links">
+                <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <h3>Secure Communications Server</h3>
+        <p>Engineered a real-time messaging system applying Socket programming. Implemented a robust hybrid encryption protocol (RSA + AES) to ensure secure key exchange and tamper-proof data transmission.</p>
+        <div class="tech-tags">
+            <span>Python</span>
+            <span>Sockets</span>
+            <span>RSA / AES</span>
+            <span>Networking</span>
+        </div>
+    </div>
+
+    <div class="project-card fade-up delay-6">
+        <div class="card-header">
+            <i class="fa-solid fa-database card-icon"></i>
+            <div class="card-links">
+                <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <h3>Relational Booking System</h3>
+        <p>Implemented a full-stack, database-driven ticket booking application. Designed complex relational MySQL schemas to manage stateful user sessions, concurrent seat booking, and movie data inventory.</p>
+        <div class="tech-tags">
+            <span>MySQL</span>
+            <span>PHP</span>
+            <span>JavaScript</span>
+            <span>Architecture</span>
+        </div>
+    </div>
+
+    <div class="project-card fade-up delay-6">
+        <div class="card-header">
+            <i class="fa-solid fa-mobile-screen card-icon"></i>
+            <div class="card-links">
+                <a href="https://github.com/Aayu4473" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+        <h3>FinTech UI Architecture</h3>
+        <p>Designed a native Android application replicating modern FinTech user flows. Integrated Firebase for stateful user authentication and developed complex XML view hierarchies for a seamless mobile experience.</p>
+        <div class="tech-tags">
+            <span>Android Studio</span>
+            <span>Java</span>
+            <span>XML</span>
+            <span>Firebase</span>
+        </div>
+    </div>
+
+</section>
+
+<div class="btn-container fade-up delay-6">
+    <a href="https://github.com/Aayu4473" target="_blank" class="github-btn">
+        <i class="fa-brands fa-github"></i> View Full Repository
+    </a>
 </div>
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    const ctx = canvas.getContext('2d');
 
-        </div>
+    let width, height;
+    let particles = [];
 
-        <div class="btn-container">
-            <a href="https://github.com/Aayu4473" target="_blank" class="github-btn">
-                <i class="fa-brands fa-github"></i> View All on GitHub
-            </a>
-        </div>
-    </section>
+    // Resize canvas to fit screen
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
 
+    // Mouse tracking for interactivity
+    let mouse = { x: null, y: null, radius: 150 };
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+    window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    // Particle Class
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // Bounce off edges
+            if (this.x > width || this.x < 0) this.speedX *= -1;
+            if (this.y > height || this.y < 0) this.speedY *= -1;
+        }
+        draw() {
+            ctx.fillStyle = 'rgba(6, 182, 212, 0.5)'; // Cyan color matching your theme
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Populate particles
+    function init() {
+        particles = [];
+        let numberOfParticles = (width * height) / 9000; // Adjust density here
+        for (let i = 0; i < numberOfParticles; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    // Animation Loop
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            // Connect nearby particles
+            for (let j = i; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 120) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(139, 92, 246, ${1 - distance/120})`; // Purple fading lines
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            // Connect to mouse
+            if (mouse.x != null) {
+                let dx = particles[i].x - mouse.x;
+                let dy = particles[i].y - mouse.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(6, 182, 212, ${1 - distance/mouse.radius})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+</script>
 </body>
 </html>
